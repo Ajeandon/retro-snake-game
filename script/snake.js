@@ -31,19 +31,18 @@ Snake.prototype.move = function(){
 	this.yspeed = 0;
     }
 
-    
-    if(this.x >= canvas.width){
-	this.x = 0 - this.scl;
-    }else if(this.y >= canvas.height){
-	this.y = 0 - this.scl;
-    }else if(this.x < 0){
-	this.x = canvas.width;
-    }else if(this.y < 0){
-	this.y = canvas.height;
-    }
-
     this.x += this.xspeed;
     this.y += this.yspeed;
+
+    if(this.x >= canvas.width && this.dir == M_RIGHT){ // right
+	this.x = 0;
+    }else if(this.y >= canvas.height && this.dir == M_DOWN){ // bottom
+	this.y = 0;
+    }else if(this.x < 0 && this.dir == M_LEFT){ // left
+	this.x = canvas.width - this.scl;
+    }else if(this.y < 0 && this.dir == M_UP){ // top
+	this.y = canvas.height - this.scl;
+    }
 }
 
 Snake.prototype.eat = function(food_x, food_y){
